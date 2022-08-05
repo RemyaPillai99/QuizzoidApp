@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<section class="vh-150">
+  <div class="container-fluid h-custom">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <br>
+        <h2 class="header text-center">Quiz Completed!</h2>
+        <br>
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <div class="card" style="width: 40rem; background-color:lightgoldenrodyellow">
+            <h3>Participant Name: {{quizService.getParticipantName()}}</h3>
+            <h3>Score : {{quizService.currentAnswerCount}}/{{quizService.questionList.length}}</h3>
+            <div style="font-size: 24px; line-height: 1.5em;">
+              <i class="fa fa-clock-o" aria-hidden="true"></i><span class="sr-only"></span> Time Elapsed :
+              {{quizService.getTimeElapsed()}}
+            </div>
+            <br>
+            <button type="button" class="btn btn-success" (click)="restart()"><i class="fa fa-refresh"
+              aria-hidden="true"></i> Restart Quiz </button>
+          </div>
+          <br>
+        </div>
+        <br>
+        <div class="card text-center">
+          <h3>Review Questions with correct answer</h3>
+        </div>
+        <br>
+        <ng-container *ngFor="let qn of quizService.questionList;let i=index">
+          <div class="card text-white bg-secondary mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{i+1}}.{{qn.questionText }}</h5>
+            </div>
+            <div class="row">
+              <div class="col-6" *ngFor="let Option of qn.options">
+                <div class="form-check"></div>
+                <input class="form-check-input" id="{{Option._id}}" type="checkbox" disabled="disabled"
+                  [checked]="qn.selected==Option._id" /> {{Option.text}}
+
+                <span class="badge bg-success" *ngIf="qn.answer==Option._id">Correct</span>
+                <span class="badge bg-danger" *ngIf="qn.selected==Option._id && qn.answer!=Option._id">Incorrect</span>
+              </div>
+            </div>
+            <br>
+            <span class=" bg-dark">Explanation : {{qn.explanation}}</span>
+
+          </div>
+
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</section>

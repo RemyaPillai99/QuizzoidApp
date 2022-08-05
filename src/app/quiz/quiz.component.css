@@ -1,0 +1,16 @@
+.card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    color: black;
+    background-color: rgb(221 177 17 / 20%);
+}
+
+li {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+ol.list-group li:hover {
+    background-color: rgb(14, 153, 228);
+}
